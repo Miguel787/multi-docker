@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t Miguel787/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t miguel787/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true Miguel787/react-test npm test
+  - docker run -e CI=true miguel787/react-test npm test
 
 after_success:
-  - docker build -t Miguel787/multi-client ./client
-  - docker build -t Miguel787/multi-nginx ./nginx
-  - docker build -t Miguel787/multi-server ./server
-  - docker build -t Miguel787/multi-worker ./worker
+  - docker build -t miguel787/multi-client ./client
+  - docker build -t miguel787/multi-nginx ./nginx
+  - docker build -t miguel787/multi-server ./server
+  - docker build -t miguel787/multi-worker ./worker
 
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # take those images and push them to docker hub 
-  - docker push Miguel787/multi-client
-  - docker push Miguel787/multi-nginx
-  - docker push Miguel787/multi-server
-  - docker push Miguel787/multi-worker
+  - docker push miguel787/multi-client
+  - docker push miguel787/multi-nginx
+  - docker push miguel787/multi-server
+  - docker push miguel787/multi-worker
